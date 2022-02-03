@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.os.CountDownTimer
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import kotlin.math.absoluteValue
@@ -16,6 +17,7 @@ class Game2Activity : AppCompatActivity() {
     val start = 60000L
     var timer0 = start
     lateinit var countDownTimer: CountDownTimer
+    lateinit var imgTimer: CountDownTimer
 
     private fun setTextTimer() {
         var m = (timer0 / 1000) / 60
@@ -38,6 +40,17 @@ class Game2Activity : AppCompatActivity() {
             }
         }.start()
     }
+
+//    private fun setRandomImg(){
+//        val imgView: ImageView = findViewById(R.id.random_image)
+//
+//        imgTimer = object: CountDownTimer(3000, ((0 until 3).random()*1000).toLong()) {
+//            override fun onTick(millisUntilFinished: Long) {}
+//            override fun onFinish() {
+//                imgView.setImageResource()
+//            }
+//        }.start()
+//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
 

@@ -1,0 +1,57 @@
+<resources>
+    <string name="app_name">CSI5175Assignment1Project_ZixunXiang_YaqingZhu</string>
+    <string name="entryPageText">Welcome to Zixun Xiang and Yaqing Zhu‘s game</string>
+    <string name="entry_button">OK</string>
+    <string name="title_activity_home_page">HomePageActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">CSI5175 Assignment1</string>
+    <string name="nav_header_subtitle">Zixun Xiang and Yaqing Zhu</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Back to main</string>
+    <string name="report_issue">Report issues to developer</string>
+    <string name="score_checker">Check saved scores</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gameA">GameA</string>
+    <string name="enter_gameA">Start Game A</string>
+    <string name="add_questionsA">Add questions to Game A</string>
+    <string name="answer_confirm">OK</string>
+    <string name="end_confirm">FINISH</string>
+    <string name="restart_gameA">RESTART</string>
+    <string name="save_score">SAVE SCORE</string>
+    <string name="leave_gameA">LEAVE</string>
+    <string name="gameA_answersheet">RESULT</string>
+    <string name="gameA_answersheetinstruction">The correct answers will be green.
+        \nYour answers will in bold font.\nIf your answer is wrong, it will also be red</string>
+
+    <string name="menu_gameB">GameB</string>
+    <string name="enter_gameB">Start Game B</string>
+    <string name="gameB_start">START</string>
+    <string name="gameB_change">Select/upload animal</string>
+    <string name="gameB_timer">60</string>
+
+<!--    questiongs for game A -->
+    <string name="questionsize">10</string>
+    <string name="answersize">10</string>
+    <string name="question1">Who is the director of dune 2021?</string>
+    <string name="answer1">Denis Villeneuve</string>
+    <string name="question2">What band was Harry Styles in before his solo career?</string>
+    <string name="answer2">One Direction</string>
+    <string name="question3">Which Disney Princess called Gus and Jaq friends?</string>
+    <string name="answer3">Cinderella</string>
+    <string name="question4">What is rapper P Diddy\'s real name?</string>
+    <string name="answer4">Sean Combs</string>
+    <string name="question5">Which two musicians collaborated on Another Way To Die, the theme song 007: Quantum of Solace?</string>
+    <string name="answer5">Alicia Keys and Jack White</string>
+    <string name="question6">Which popular video game franchise has released games with the subtitles World At War and Black Ops?</string>
+    <string name="answer6">Call of Duty</string>
+    <string name="question7">Which rock band was founded by Trent Reznor in 1988?</string>
+    <string name="answer7">Nine Inch Nails</string>
+    <string name="question8">For what movie did Tom Hanks score his first Academy Award nomination?</string>
+    <string name="answer8">Big</string>
+    <string name="question9">What’s the name of the skyscraper in Die Hard?</string>
+    <string name="answer9">Nakatomi Plaza</string>
+    <string name="question10">Who played park owner John Hammond in Jurassic Park?</string>
+    <string name="answer10">Richard Attenborough</string>
+</resources>
