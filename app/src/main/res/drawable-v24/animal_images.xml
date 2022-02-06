@@ -1,0 +1,11 @@
+<level-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:maxLevel="1" android:drawable="@drawable/cat1"/>
+    <item android:maxLevel="2" android:drawable="@drawable/cat2"/>
+    <item android:maxLevel="3" android:drawable="@drawable/bird1"/>
+    <item android:maxLevel="4" android:drawable="@drawable/bird2"/>
+    <item android:maxLevel="5" android:drawable="@drawable/bird3"/>
+    <item android:maxLevel="6" android:drawable="@drawable/dog1"/>
+    <item android:maxLevel="7" android:drawable="@drawable/dog2"/>
+    <item android:maxLevel="8" android:drawable="@drawable/horse1"/>
+    <item android:maxLevel="9" android:drawable="@drawable/lion1"/>
+</level-list>

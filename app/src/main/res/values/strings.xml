@@ -28,7 +28,7 @@
     <string name="menu_gameB">GameB</string>
     <string name="enter_gameB">Start Game B</string>
     <string name="gameB_start">START</string>
-    <string name="gameB_change">Select/upload animal</string>
+    <string name="gameB_change">Add animal image to Game B</string>
     <string name="gameB_timer">60</string>
 
 <!--    questiongs for game A -->
@@ -54,4 +54,7 @@
     <string name="answer9">Nakatomi Plaza</string>
     <string name="question10">Who played park owner John Hammond in Jurassic Park?</string>
     <string name="answer10">Richard Attenborough</string>
+
+<!--    images id for game B -->
+    <string name="imgsize">9</string>
 </resources>

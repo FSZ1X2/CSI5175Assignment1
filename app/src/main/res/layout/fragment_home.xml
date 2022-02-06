@@ -8,19 +8,43 @@
 
     <TextView
         android:id="@+id/text_home"
-        android:layout_width="320dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:textAlignment="textStart"
+        android:textAlignment="viewStart"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.76"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2" />
+        app:layout_constraintVertical_bias="0.201" />
+
+    <Button
+        android:id="@+id/go_gameA"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="@string/enter_gameA"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_home"
+        app:layout_constraintVertical_bias="0.098" />
+
+    <Button
+        android:id="@+id/go_gameb"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="@string/enter_gameB"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/go_gameA"
+        app:layout_constraintVertical_bias="0.03" />
 
     <Button
         android:id="@+id/add_QtoA"
@@ -31,8 +55,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_home"
-        app:layout_constraintVertical_bias="0.086" />
+        app:layout_constraintTop_toBottomOf="@+id/go_gameb"
+        app:layout_constraintVertical_bias="0.03" />
+
+    <Button
+        android:id="@+id/add_imagetoB"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="@string/gameB_change"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_QtoA"
+        app:layout_constraintVertical_bias="0.03" />
 
     <Button
         android:id="@+id/report_button"
@@ -43,8 +79,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_QtoA"
-        app:layout_constraintVertical_bias="0.032" />
+        app:layout_constraintTop_toBottomOf="@+id/add_imagetoB"
+        app:layout_constraintVertical_bias="0.03" />
 
     <Button
         android:id="@+id/check_score"
@@ -56,5 +92,6 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/report_button"
-        app:layout_constraintVertical_bias="0.035" />
+        app:layout_constraintVertical_bias="0.03
+" />
 </androidx.constraintlayout.widget.ConstraintLayout>
