@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.example.csi5175assignment1project_zixunxiang_yaqingzhu.service.BackGroundMusic
 
 
 class MainActivity : AppCompatActivity() {
@@ -16,6 +17,7 @@ class MainActivity : AppCompatActivity() {
         val entryButton: Button = findViewById(R.id.entryButton)
         //2. attaches a click listener to the Button
         entryButton.setOnClickListener{
+            startService(Intent(this, BackGroundMusic::class.java))
             //3. request another activity to achieve the task
             val intent = Intent(this, HomePageActivity::class.java)
             startActivity(intent)
