@@ -17,7 +17,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.csi5175assignment1project_zixunxiang_yaqingzhu.databinding.ActivityHomePageBinding
 import com.example.csi5175assignment1project_zixunxiang_yaqingzhu.service.BackGroundMusic
-import com.example.csi5175assignment1project_zixunxiang_yaqingzhu.ui.Storage
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 
@@ -29,12 +28,12 @@ class HomePageActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val view = findViewById<View>(R.id.game_zone) as ConstraintLayout
         binding = ActivityHomePageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setSupportActionBar(binding.appBarHomePage.toolbar)
 
+        //toggle background music
         binding.appBarHomePage.fab.setOnClickListener { view ->
             Snackbar.make(view, "", Snackbar.LENGTH_LONG)
                 .setAction("Click on here to turn on/off music") {
@@ -77,7 +76,6 @@ class HomePageActivity : AppCompatActivity() {
             startActivity(intent)
             false
         }
-
         return true
     }
 

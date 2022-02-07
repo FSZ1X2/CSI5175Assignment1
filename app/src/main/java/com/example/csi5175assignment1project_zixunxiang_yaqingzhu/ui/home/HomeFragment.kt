@@ -9,8 +9,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.csi5175assignment1project_zixunxiang_yaqingzhu.Game1Activity
-import com.example.csi5175assignment1project_zixunxiang_yaqingzhu.Game2Activity
+import com.example.csi5175assignment1project_zixunxiang_yaqingzhu.*
 import com.example.csi5175assignment1project_zixunxiang_yaqingzhu.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -52,13 +51,13 @@ class HomeFragment : Fragment() {
         //add questions to game A
         val addQtoAbutton: Button = binding.addQtoA
         addQtoAbutton.setOnClickListener {
-            val intent = Intent(activity, Game2Activity::class.java)
+            val intent = Intent(activity, GameAQuestionEditing::class.java)
             startActivity(intent)
         }
         //add images to game B
         val addImgtoBbutton: Button = binding.addImagetoB
         addImgtoBbutton.setOnClickListener {
-            val intent = Intent(activity, Game2Activity::class.java)
+            val intent = Intent(activity, GameBImgEditing::class.java)
             startActivity(intent)
         }
         //report issues to developers
@@ -69,7 +68,8 @@ class HomeFragment : Fragment() {
         //check saved scores
         val checkScorebutton: Button = binding.checkScore
         checkScorebutton.setOnClickListener {
-            //TODO: load user score saved on xml file
+            val intent = Intent(activity, UserScorePage::class.java)
+            startActivity(intent)
         }
 
         return root

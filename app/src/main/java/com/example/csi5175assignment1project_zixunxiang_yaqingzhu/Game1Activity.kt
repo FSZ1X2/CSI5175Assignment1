@@ -220,9 +220,6 @@ class Game1Activity : AppCompatActivity() {
         //setup the first question
         setQuestionNumber()
         //select 5 random questions from the question set
-//        val qSize : Int = getString(R.string.questionsize).toInt()
-//        val qNumber: MutableSet<Int> = mutableSetOf()
-//        while (qNumber.size < 6) { qNumber.add((1..qSize).random())}
         randomQList = selectQfromset()//qNumber.toList()
         setQuestionText(1, randomQList.toList())
 
@@ -266,6 +263,7 @@ class Game1Activity : AppCompatActivity() {
         }
     }
 
+    //top menu bar
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // back to main or homepage menu setting
         menuInflater.inflate(R.menu.home_page, menu)

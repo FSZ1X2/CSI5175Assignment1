@@ -17,8 +17,8 @@ class MainActivity : AppCompatActivity() {
         val entryButton: Button = findViewById(R.id.entryButton)
         //2. attaches a click listener to the Button
         entryButton.setOnClickListener{
-            startService(Intent(this, BackGroundMusic::class.java))
             //3. request another activity to achieve the task
+            startService(Intent(this, BackGroundMusic::class.java))
             val intent = Intent(this, HomePageActivity::class.java)
             startActivity(intent)
         }
