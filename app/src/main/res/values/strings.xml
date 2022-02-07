@@ -30,8 +30,11 @@
     <string name="gameB_start">START</string>
     <string name="gameB_change">Add animal image to Game B</string>
     <string name="gameB_timer">60</string>
+    <string name="gameB_questionText">Please enter how many kinds of animals you have seen</string>
+    <string name="restart_gameB">RESTART</string>
+    <string name="confirm_gameB">OK</string>
 
-<!--    questiongs for game A -->
+    <!--    questiongs for game A -->
     <string name="questionsize">10</string>
     <string name="answersize">10</string>
     <string name="question1">Who is the director of dune 2021?</string>
@@ -55,6 +58,5 @@
     <string name="question10">Who played park owner John Hammond in Jurassic Park?</string>
     <string name="answer10">Richard Attenborough</string>
 
-<!--    images id for game B -->
-    <string name="imgsize">9</string>
+    <!--    user score -->
 </resources>

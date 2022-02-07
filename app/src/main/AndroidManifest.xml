@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CSI5175Assignment1Project_ZixunXiang_YaqingZhu">
         <activity
+            android:name=".UserScorePage"
+            android:exported="false" />
+        <activity
+            android:name=".GameBImgEditing"
+            android:exported="false" />
+        <activity
+            android:name=".GameAQuestionEditing"
+            android:exported="false" />
+        <activity
             android:name=".Game2Activity"
             android:exported="false"
             android:label="@string/menu_gameB" />

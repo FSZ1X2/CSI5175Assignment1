@@ -37,16 +37,39 @@ class HomeFragment : Fragment() {
             textView.text = it
         }
 
+        //start game A directly
         val start1button: Button = binding.goGameA
         start1button.setOnClickListener {
             val intent = Intent(activity, Game1Activity::class.java)
             startActivity(intent)
         }
-
+        //start game B directly
         val start2button: Button = binding.goGameb
         start2button.setOnClickListener {
             val intent = Intent(activity, Game2Activity::class.java)
             startActivity(intent)
+        }
+        //add questions to game A
+        val addQtoAbutton: Button = binding.addQtoA
+        addQtoAbutton.setOnClickListener {
+            val intent = Intent(activity, Game2Activity::class.java)
+            startActivity(intent)
+        }
+        //add images to game B
+        val addImgtoBbutton: Button = binding.addImagetoB
+        addImgtoBbutton.setOnClickListener {
+            val intent = Intent(activity, Game2Activity::class.java)
+            startActivity(intent)
+        }
+        //report issues to developers
+        val reportQbutton: Button = binding.reportButton
+        reportQbutton.setOnClickListener {
+            //TODO: add email pop window
+        }
+        //check saved scores
+        val checkScorebutton: Button = binding.checkScore
+        checkScorebutton.setOnClickListener {
+            //TODO: load user score saved on xml file
         }
 
         return root

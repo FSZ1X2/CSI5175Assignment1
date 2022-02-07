@@ -1,17 +1,16 @@
 package com.example.csi5175assignment1project_zixunxiang_yaqingzhu
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Canvas
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 
@@ -53,8 +52,6 @@ class Game2Activity : AppCompatActivity() {
         //get current view and imageView component
         val view = findViewById<View>(R.id.game_zone) as ConstraintLayout
         val img: ImageView = findViewById(R.id.random_image)
-        //clear up first
-        
         //check how many saved images the app currently has
         val imagesNum = getString(R.string.imgsize).toInt()
         //get image height and width
@@ -62,7 +59,6 @@ class Game2Activity : AppCompatActivity() {
         val width: Int = img.width
         //chose one randomly
         val choice = (1..imagesNum).random()
-//        val choice = (1..imagesNum).random()
         //calculate a random top/left pos for imageView component
         val top: Int = (0 .. (view.measuredHeight - height)).random()
         val left: Int = (0 .. (view.measuredWidth - width)).random()
@@ -75,10 +71,38 @@ class Game2Activity : AppCompatActivity() {
         img.drawable.level = choice
     }
 
+    //result window
+    private fun openQuestion() {
+        //initialize a new layout inflater instance for result
+        val questionPage: LayoutInflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val view = questionPage.inflate(R.layout.game2question, null)
+        //initialize a popup window instance
+        val popupWindow = PopupWindow(
+            view,
+            LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT
+        )
+        //get user input number from the edit text field
+        //TODO...
+        //button for calculating the score
+        val okButton = view.findViewById<Button>(R.id.confirm_gameBResult)
+        okButton.setOnClickListener(){
+            //calculate the final score
+            //TODO...
+            popupWindow.dismiss()
+        }
+        //button for reset the game from the beginning
+        val restartButton = view.findViewById<Button>(R.id.reset_gameA)
+        restartButton.setOnClickListener(){
+            //reset the timer and go back
+            //TODO...
+            popupWindow.dismiss()
+        }
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game2)
-
         //initial timer text
         setTextTimer()
         //click the start button to start the game
