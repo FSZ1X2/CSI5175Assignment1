@@ -34,10 +34,10 @@
         android:textColor="@color/gray_100"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/game2question_text"
-        app:layout_constraintVertical_bias="0.099"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.456"
         tools:ignore="TouchTargetSizeCheck" />
 
     <Button
@@ -59,10 +59,22 @@
         android:text="@string/restart_gameB"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confirm_gameBResult"
         app:layout_constraintVertical_bias="0.04" />
+
+    <Button
+        android:id="@+id/save_gameBscore"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="@string/save_gameB"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/restart_gameB"
+        app:layout_constraintVertical_bias="0.05" />
 
     <Button
         android:id="@+id/leavegameb_button"
@@ -71,10 +83,10 @@
         android:text="@string/leave_gameB"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/restart_gameB"
-        app:layout_constraintVertical_bias="0.04" />
+        app:layout_constraintTop_toBottomOf="@+id/save_gameBscore"
+        app:layout_constraintVertical_bias="0.065" />
 
     <TextView
         android:id="@+id/score_board"

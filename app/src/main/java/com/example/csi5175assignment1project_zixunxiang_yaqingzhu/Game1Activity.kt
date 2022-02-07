@@ -4,14 +4,14 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
-import android.os.Build
 import android.os.Bundle
-import android.transition.Slide
+import android.os.Environment
 import android.transition.TransitionManager
 import android.view.*
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import java.io.File
 import java.util.*
 
 
@@ -21,18 +21,60 @@ class Game1Activity : AppCompatActivity() {
     var questionAnswered = 0 //how many questions user have answered
     var finalscore = 0
 
-    var userAnswerList: MutableList<String> = mutableListOf<String>() //saved all user's answer
-    var questionList: MutableList<Int> = mutableListOf<Int>() //saved the order of questions by id
-    var randomQList: MutableSet<Int> = mutableSetOf<Int>() //saved randomly selected questions id
-    var choiceList: MutableList<Int> = mutableListOf<Int>() //saved all selected choices by id
-    var correctAnswerList: MutableList<String> = mutableListOf<String>() //saved correct answers for questions
+    //var for load game A info
+    var totalSize = 0
+    var allQuestionsList: MutableList<String> = mutableListOf<String>()
+    var allAnswersList: MutableList<String> = mutableListOf<String>()
 
-    //get 5 random select question as a list
-    private fun selectQfromset(): MutableSet<Int>{
-        val qSize : Int = getString(R.string.questionsize).toInt()
-        val qNumber: MutableSet<Int> = mutableSetOf()
-        while (qNumber.size < 6) { qNumber.add((1..qSize).random())}
-        return qNumber
+    //list saves 5 questions that randomly selected for the question set
+    var randomQuestionList: MutableList<String> = mutableListOf<String>()
+    //saved correct answers for questions
+    var correctAnswerList: MutableList<String> = mutableListOf<String>()
+
+    //saved all user's answer
+    var userAnswerList: MutableList<String> = mutableListOf<String>()
+
+    //saved all selected choices
+    var choiceList: MutableList<String> = mutableListOf<String>()
+
+    //get questions set and answers set from file
+    private fun loadGameA(){
+        //load score.txt file:
+        //find sdcard direction first
+        val sdCardDir = File(
+            Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_DOCUMENTS), "User"
+        )
+        //Get the text file
+        val file_quesiton = File(sdCardDir, "gameA_questions.txt")
+        val file_answer = File(sdCardDir, "gameA_answers.txt")
+        //save questions and answers to lists
+        if(file_quesiton.length().toInt()!=0){
+            file_quesiton.forEachLine {
+                allQuestionsList.add(it)
+            }
+        }
+        if(file_answer.length().toInt()!=0){
+            file_answer.forEachLine {
+                allAnswersList.add(it)
+            }
+        }
+        //save total number of questions
+        totalSize = allQuestionsList.size
+    }
+
+    //get 5 random selected question and save to list
+    private fun selectQfromset(){
+        while (randomQuestionList.size != 5) {
+            val qNumber = (0 until totalSize).random()
+            //make sure no duplicate questions
+            if(!randomQuestionList.any{ it == allQuestionsList[qNumber] }){
+                randomQuestionList.add(allQuestionsList[qNumber])
+                correctAnswerList.add(allAnswersList[qNumber])
+            }
+        }
+        System.out.println(randomQuestionList)
+        System.out.println(correctAnswerList)
     }
 
     //clear up game A
@@ -42,8 +84,7 @@ class Game1Activity : AppCompatActivity() {
         finalscore = 0
 
         userAnswerList.clear()
-        questionList.clear()
-        randomQList.clear()
+        randomQuestionList.clear()
         choiceList.clear()
         correctAnswerList.clear()
     }
@@ -56,40 +97,31 @@ class Game1Activity : AppCompatActivity() {
     }
 
     //change questions based on random selection
-    private fun setQuestionText(qNo:Int, qList: List<Int>) {
+    private fun setQuestionText(qNo:Int) { //, qList: List<Int>
         //setup the question describe text
-        var name = String.format("question%d", qList[qNo])//.toInt()
-        val resourceId = this.resources.getIdentifier(name, "string", this.packageName)
         val question: TextView = findViewById(R.id.question_text)
-        question.text = getString(resourceId)
-        questionList.add(resourceId)
+        question.text = randomQuestionList[qNo]//getString(resourceId)
 
         //setup the multi-choice text
-        //first select true answer
-        var trueAnswer = String.format("answer%d", qList[qNo])
-        val trueAnswerID = this.resources.getIdentifier(trueAnswer, "string", this.packageName)
-        //then find the other two wrong answers
-        val aSize : Int = getString(R.string.answersize).toInt()
-        val aNumber: MutableSet<Int> = mutableSetOf()
-        aNumber.add(trueAnswerID)
-        while (aNumber.size < 3)
+        //first select 2 wrong answer
+        val aNumber: MutableSet<String> = mutableSetOf()
+        while (aNumber.size < 2)
         {
-            aNumber.add(this.resources.getIdentifier(
-                String.format("answer%d", (1..aSize).random()), "string", this.packageName))
+            val item = allAnswersList[(0 until allAnswersList.size).random()]
+            if(item != correctAnswerList[qNo]) aNumber.add(item)
         }
-        val randomAList = aNumber.toList()
+        //then save the correct answer to the list
+        aNumber.add(correctAnswerList[qNo])
         //finally fill selected answer into choice randomly
+        val randomAList = aNumber.toList()
         Collections.shuffle(randomAList)
         val choiceA1: TextView = findViewById(R.id.choice1)
-        choiceA1.text = getString(randomAList[0])
+        choiceA1.text = randomAList[0]
         val choiceA2: TextView = findViewById(R.id.choice2)
-        choiceA2.text = getString(randomAList[1])
+        choiceA2.text = randomAList[1]
         val choiceA3: TextView = findViewById(R.id.choice3)
-        choiceA3.text = getString(randomAList[2])
-        //also save the correct answer to the list
-        if(randomAList[0] == trueAnswerID) correctAnswerList.add(getString(randomAList[0]))
-        if(randomAList[1] == trueAnswerID) correctAnswerList.add(getString(randomAList[1]))
-        if(randomAList[2] == trueAnswerID) correctAnswerList.add(getString(randomAList[2]))
+        choiceA3.text = randomAList[2]
+        //also save all choice to list for overview
         choiceList.add(randomAList[0])
         choiceList.add(randomAList[1])
         choiceList.add(randomAList[2])
@@ -103,8 +135,26 @@ class Game1Activity : AppCompatActivity() {
             item.setTextColor(ContextCompat.getColor(this,R.color.red))
     }
 
+    //save score
+    private fun saveCurrentScore(){
+        //get current date info
+        val currentDate = Calendar.getInstance().time
+        //generate the string that save the user score info
+        val savedScore = "Your game A score on $currentDate is: $finalscore\n"
+        //load score.txt file:
+        //find sdcard direction first
+        val sdCardDir = File(
+            Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_DOCUMENTS), "User"
+        )
+        //Get the text file
+        val myfile = File(sdCardDir, "user_scores.txt")
+        myfile.appendText(savedScore)
+    }
+
     //result window
     private fun showResult() {
+        System.out.println("in")
         //initialize a new layout inflater instance for result
         val resultPage: LayoutInflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view = resultPage.inflate(R.layout.game1result,null)
@@ -116,83 +166,92 @@ class Game1Activity : AppCompatActivity() {
         scoreBoard.text = "Your Score: \n$finalscore"
         //show questions and choices
         val questionField1 = view.findViewById<TextView>(R.id.question_text0)
-        questionField1.text = "Q1. " + getString(questionList[0])
+        questionField1.text = "Q1. " + randomQuestionList[0]
         val question1choice1 = view.findViewById<TextView>(R.id.question0_choice0)
-        question1choice1.text = getString(choiceList[0])
+        question1choice1.text = choiceList[0]
         fontEditor(0, question1choice1)
         question1choice1.text = "a. " + question1choice1.text
         val question1choice2 = view.findViewById<TextView>(R.id.question0_choice1)
-        question1choice2.text = getString(choiceList[1])
+        question1choice2.text = choiceList[1]
         fontEditor(0, question1choice2)
         question1choice2.text = "b. " + question1choice2.text
         val question1choice3 = view.findViewById<TextView>(R.id.question0_choice2)
-        question1choice3.text = getString(choiceList[2])
+        question1choice3.text = choiceList[2]
         fontEditor(0, question1choice3)
         question1choice3.text = "c. " + question1choice3.text
         val questionField2 = view.findViewById<TextView>(R.id.question_text1)
-        questionField2.text = "Q2. " + getString(questionList[1])
+        questionField2.text = "Q2. " + randomQuestionList[1]
         val question2choice1 = view.findViewById<TextView>(R.id.question1_choice0)
-        question2choice1.text = getString(choiceList[3])
+        question2choice1.text = choiceList[3]
         fontEditor(1, question2choice1)
         question2choice1.text = "a. " + question2choice1.text
         val question2choice2 = view.findViewById<TextView>(R.id.question1_choice1)
-        question2choice2.text = getString(choiceList[4])
+        question2choice2.text = choiceList[4]
         fontEditor(1, question2choice2)
         question2choice2.text = "b. " + question2choice2.text
         val question2choice3 = view.findViewById<TextView>(R.id.question1_choice2)
-        question2choice3.text = getString(choiceList[5])
+        question2choice3.text = choiceList[5]
         fontEditor(1, question2choice3)
         question2choice3.text = "c. " + question2choice3.text
         val questionField3 = view.findViewById<TextView>(R.id.question_text2)
-        questionField3.text = "Q3. " + getString(questionList[2])
+        questionField3.text = "Q3. " + randomQuestionList[2]
         val question3choice1 = view.findViewById<TextView>(R.id.question2_choice0)
-        question3choice1.text = getString(choiceList[6])
+        question3choice1.text = choiceList[6]
         fontEditor(2, question3choice1)
         question3choice1.text = "a. " + question3choice1.text
         val question3choice2 = view.findViewById<TextView>(R.id.question2_choice1)
-        question3choice2.text = getString(choiceList[7])
+        question3choice2.text = choiceList[7]
         fontEditor(2, question3choice2)
         question3choice2.text = "b. " + question3choice2.text
         val question3choice3 = view.findViewById<TextView>(R.id.question2_choice2)
-        question3choice3.text = getString(choiceList[8])
+        question3choice3.text = choiceList[8]
         fontEditor(2, question3choice3)
         question3choice3.text = "c. " + question3choice3.text
         val questionField4 = view.findViewById<TextView>(R.id.question_text3)
-        questionField4.text = "Q4. " + getString(questionList[3])
+        questionField4.text = "Q4. " + randomQuestionList[3]
         val question4choice1 = view.findViewById<TextView>(R.id.question3_choice0)
-        question4choice1.text = getString(choiceList[9])
+        question4choice1.text = choiceList[9]
         fontEditor(3, question4choice1)
         question4choice1.text = "a. " + question4choice1.text
         val question4choice2 = view.findViewById<TextView>(R.id.question3_choice1)
-        question4choice2.text = getString(choiceList[10])
+        question4choice2.text = choiceList[10]
         fontEditor(3, question4choice2)
         question4choice2.text = "b. " + question4choice2.text
         val question4choice3 = view.findViewById<TextView>(R.id.question3_choice2)
-        question4choice3.text = getString(choiceList[11])
+        question4choice3.text = choiceList[11]
         fontEditor(3, question4choice3)
         question4choice3.text = "c. " + question4choice3.text
         val questionField5 = view.findViewById<TextView>(R.id.question_text4)
-        questionField5.text = "Q5. " + getString(questionList[4])
+        questionField5.text = "Q5. " + randomQuestionList[4]
         val question5choice1 = view.findViewById<TextView>(R.id.question4_choice0)
-        question5choice1.text = getString(choiceList[12])
+        question5choice1.text = choiceList[12]
         fontEditor(4, question5choice1)
         question5choice1.text = "a. " + question5choice1.text
         val question5choice2 = view.findViewById<TextView>(R.id.question4_choice1)
-        question5choice2.text = getString(choiceList[13])
+        question5choice2.text = choiceList[13]
         fontEditor(4, question5choice2)
         question5choice2.text = "b. " + question5choice2.text
         val question5choice3 = view.findViewById<TextView>(R.id.question4_choice2)
-        question5choice3.text = getString(choiceList[14])
+        question5choice3.text = choiceList[14]
         fontEditor(4, question5choice3)
         question5choice3.text = "c. " + question5choice3.text
 
+        //button for save the score from the game
+        val saveButton = view.findViewById<Button>(R.id.save_gameAscore)
+        saveButton.setOnClickListener(){
+            //save score
+            saveCurrentScore()
+            //reset game
+            clearParameter()
+        }
         //button for reset the game from the beginning
         val restartButton = view.findViewById<Button>(R.id.reset_gameA)
         restartButton.setOnClickListener(){
+            //reset game
             clearParameter()
             setQuestionNumber()
-            randomQList = selectQfromset()//qNumber.toList()
-            setQuestionText(1, randomQList.toList())
+            selectQfromset()
+            setQuestionText(0)
             popupWindow.dismiss()
         }
         //button for go back to homepage
@@ -215,6 +274,8 @@ class Game1Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game1)
+        //load files for game A
+        loadGameA()
         //setup the first question
         setQuestionNumber()
         //setup background color
@@ -226,8 +287,8 @@ class Game1Activity : AppCompatActivity() {
         )
         myView.setBackgroundColor(color)
         //select 5 random questions from the question set
-        randomQList = selectQfromset()//qNumber.toList()
-        setQuestionText(1, randomQList.toList())
+        selectQfromset()
+        setQuestionText(0)
 
         //get next button and radio button
         val nextButton: Button = findViewById(R.id.confirm_button)
@@ -256,7 +317,7 @@ class Game1Activity : AppCompatActivity() {
                 if (questionNo < 5) questionNo += 1
                 //change questions
                 setQuestionNumber()
-                setQuestionText(questionNo, randomQList.toList())
+                setQuestionText(questionNo-1)//, randomQList.toList()
                 //change screen color to random color
                 color = Color.argb(
                     130, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256)

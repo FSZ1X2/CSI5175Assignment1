@@ -4,11 +4,14 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.os.Environment
 import android.transition.TransitionManager
 import android.view.*
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import java.io.File
+import java.util.*
 
 
 class Game2Activity : AppCompatActivity() {
@@ -18,6 +21,7 @@ class Game2Activity : AppCompatActivity() {
     var animalTimer = 1 //var for change animal each 1-3s
     var animalList: MutableList<Int> = mutableListOf()
     var finalScore = 0.0f //save the calculated score for game B
+    var savedScore = 0.0f //save the calculated score from game B to scores file
     lateinit var countDownTimer: CountDownTimer
 
     //change the text to show how many time left
@@ -108,6 +112,25 @@ class Game2Activity : AppCompatActivity() {
         startButton.visibility = View.VISIBLE
     }
 
+    //save score
+    private fun saveCurrentScore(){
+        //get current date info
+        val currentDate = Calendar.getInstance().time
+        //generate the string that save the user score info
+        //format the savedScore to make it looks better
+        val formatScore = String.format("%.2f", savedScore)
+        val savedScore = "Your game B score on $currentDate is: $formatScore\n"
+        //load score.txt file:
+        //find sdcard direction first
+        val sdCardDir = File(
+            Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_DOCUMENTS), "User"
+        )
+        //Get the text file
+        val myfile = File(sdCardDir, "user_scores.txt")
+        myfile.appendText(savedScore)
+    }
+
     //ask user to answer how many animal and provide the score they got
     private fun openQuestionandResult() {
         //initialize a new layout inflater instance for result
@@ -134,7 +157,6 @@ class Game2Activity : AppCompatActivity() {
                 val userAnswer = userInput.text.toString().toFloat()
                 //calculate final score
                 if(animalList.size != 0) finalScore = userAnswer/animalList.size
-                System.out.println(finalScore)
                 //disable user input
                 userInput.isEnabled = false
                 //hide question text
@@ -142,9 +164,22 @@ class Game2Activity : AppCompatActivity() {
                 questionText.visibility = View.GONE
                 //show score user got
                 val scoreBoard = view.findViewById<TextView>(R.id.score_board)
-                scoreBoard.text = "Your final score is $finalScore\nCalculate by\nNo.of animals you reported/Actual animals"
+                //format the finalScore to make it looks better
+                val formatScore = String.format("%.2f", finalScore)
+                scoreBoard.text = "Your final score is $formatScore\nCalculate by\nNo.of animals you reported/Actual animals"
             }
             //clear up the game after calculate
+            savedScore = finalScore
+            gameReset()
+            //disable ok button
+            okButton.isEnabled = false
+        }
+        //button for save the score from the game
+        val saveButton = view.findViewById<Button>(R.id.save_gameBscore)
+        saveButton.setOnClickListener(){
+            //save score
+            saveCurrentScore()
+            //reset game
             gameReset()
         }
         //button for reset the game from the beginning

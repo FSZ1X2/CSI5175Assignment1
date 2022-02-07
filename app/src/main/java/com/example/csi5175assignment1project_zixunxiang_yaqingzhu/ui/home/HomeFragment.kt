@@ -54,16 +54,16 @@ class HomeFragment : Fragment() {
             val intent = Intent(activity, GameAQuestionEditing::class.java)
             startActivity(intent)
         }
-        //add images to game B
-        val addImgtoBbutton: Button = binding.addImagetoB
-        addImgtoBbutton.setOnClickListener {
-            val intent = Intent(activity, GameBImgEditing::class.java)
-            startActivity(intent)
-        }
         //report issues to developers
         val reportQbutton: Button = binding.reportButton
         reportQbutton.setOnClickListener {
-            //TODO: add email pop window
+            //call email app to create a report mail
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.type = "plain/text"
+            intent.putExtra(Intent.EXTRA_EMAIL, arrayOf("zxian010@uottawa.ca"))
+            intent.putExtra(Intent.EXTRA_SUBJECT, "CSI5175 project issue report")
+            intent.putExtra(Intent.EXTRA_TEXT, "Please write down any issue you meet here...")
+            startActivity(Intent.createChooser(intent, ""))
         }
         //check saved scores
         val checkScorebutton: Button = binding.checkScore

@@ -41,7 +41,7 @@
         android:text="@string/enter_gameB"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/go_gameA"
         app:layout_constraintVertical_bias="0.03" />
@@ -53,19 +53,19 @@
         android:text="@string/add_questionsA"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/go_gameb"
         app:layout_constraintVertical_bias="0.03" />
 
     <Button
-        android:id="@+id/add_imagetoB"
+        android:id="@+id/check_score"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="@string/gameB_change"
+        android:text="@string/score_checker"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_QtoA"
         app:layout_constraintVertical_bias="0.03" />
@@ -77,21 +77,9 @@
         android:text="@string/report_issue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_imagetoB"
+        app:layout_constraintTop_toBottomOf="@+id/check_score"
         app:layout_constraintVertical_bias="0.03" />
 
-    <Button
-        android:id="@+id/check_score"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:text="@string/score_checker"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/report_button"
-        app:layout_constraintVertical_bias="0.03
-" />
 </androidx.constraintlayout.widget.ConstraintLayout>
