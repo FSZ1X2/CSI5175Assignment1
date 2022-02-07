@@ -24,7 +24,6 @@
     <string name="answer_confirm">OK</string>
     <string name="end_confirm">FINISH</string>
     <string name="restart_gameA">RESTART</string>
-    <string name="save_score">SAVE SCORE</string>
     <string name="leave_gameA">LEAVE</string>
     <string name="gameA_answersheet">RESULT</string>
     <string name="gameA_answersheetinstruction">The correct answers will be green.
@@ -35,10 +34,13 @@
     <string name="menu_gameB_edit">Game B Image Edit</string>
     <string name="gameB_editPreview">Upload</string>
     <string name="gameB_editConfirm">Confirm</string>
+    <string name="save_gameBscore">SAVE SCORE</string>
+    <string name="leave_gameB">LEAVE</string>
     <string name="gameB_start">START</string>
     <string name="gameB_change">Add animal image to Game B</string>
     <string name="gameB_timer">60</string>
-    <string name="gameB_questionText">Please enter how many kinds of animals you have seen</string>
+    <string name="gameB_questionText">Please enter how many animals you have seen</string>
+    <string name="gameB_questionInput">enter your answer</string>
     <string name="restart_gameB">RESTART</string>
     <string name="confirm_gameB">OK</string>
     <string name="imgsize">9</string>

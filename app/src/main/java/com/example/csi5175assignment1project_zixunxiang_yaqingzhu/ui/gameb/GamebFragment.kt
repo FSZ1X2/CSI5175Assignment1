@@ -30,12 +30,12 @@ class GameBFragment : Fragment() {
 
         _binding = FragmentGamebBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
+        //dynamically change text showed in textView
         val textView: TextView = binding.textGameBIntro
         viewModelB.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
-
+        //enter game B scene
         val start1button: Button = binding.entryGameBButton
         start1button.setOnClickListener {
             val intent = Intent(activity, Game2Activity::class.java)

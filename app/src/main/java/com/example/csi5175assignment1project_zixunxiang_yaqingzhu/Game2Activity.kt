@@ -2,25 +2,25 @@ package com.example.csi5175assignment1project_zixunxiang_yaqingzhu
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Canvas
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.os.Handler
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
+import android.transition.TransitionManager
+import android.view.*
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 
+
 class Game2Activity : AppCompatActivity() {
 
-    val start = 60000L
+    val start = 60000L //countdown time
     var timer0 = start
-    val handler = Handler()
+    var animalTimer = 1 //var for change animal each 1-3s
+    var animalList: MutableList<Int> = mutableListOf()
+    var finalScore = 0.0f //save the calculated score for game B
     lateinit var countDownTimer: CountDownTimer
 
+    //change the text to show how many time left
     private fun setTextTimer() {
         var m = (timer0 / 1000) / 60
         var s = (timer0 / 1000) % 60
@@ -31,18 +31,28 @@ class Game2Activity : AppCompatActivity() {
         textView.text = format
     }
 
+    //main timer function
     private fun startTimer() {
         //game timer's functions
         countDownTimer = object : CountDownTimer(timer0,1000){
             override fun onFinish() {
                 Toast.makeText(this@Game2Activity, "Game End!", Toast.LENGTH_SHORT).show()
+                animalList = animalList.distinct() as MutableList<Int>
+                openQuestionandResult()
             }
             override fun onTick(millisUntilFinished: Long) {
                 timer0 = millisUntilFinished
                 setTextTimer()
-                handler.postDelayed({
+                //check if the image of animal should be change or not
+                val change = (0 .. 1).random()
+                //if the animal have not been changed after 3s change it
+                if(change == 1 || animalTimer == 3 ) {
+                    animalTimer = 1
                     imageRandom()
-                }, ((1 .. 3).random()*1000).toLong())
+                }
+                else {
+                    animalTimer += 1
+                }
             }
         }.start()
     }
@@ -59,6 +69,7 @@ class Game2Activity : AppCompatActivity() {
         val width: Int = img.width
         //chose one randomly
         val choice = (1..imagesNum).random()
+        animalList.add(choice)
         //calculate a random top/left pos for imageView component
         val top: Int = (0 .. (view.measuredHeight - height)).random()
         val left: Int = (0 .. (view.measuredWidth - width)).random()
@@ -69,10 +80,36 @@ class Game2Activity : AppCompatActivity() {
         img.bottom = top + height
         //reset the imageView using this source
         img.drawable.level = choice
+        animalList.add(choice)
     }
 
-    //result window
-    private fun openQuestion() {
+    //func for clear up game state
+    private fun gameReset(){
+        //reset timer and var
+        timer0 = start
+        animalTimer = 1
+        animalList.clear()
+        finalScore = 0.0f
+        setTextTimer()
+        //reset image and its position
+        val view = findViewById<View>(R.id.game_zone) as ConstraintLayout
+        val img: ImageView = findViewById(R.id.random_image)
+        img.drawable.level = 0
+        val height: Int = img.height
+        val width: Int = img.width
+        val top: Int = (view.measuredHeight - height)/2
+        val left: Int = (view.measuredWidth - width)/2
+        img.left = left
+        img.top = top
+        img.right = left + width
+        img.bottom = top + height
+        //make start button visible again
+        val startButton: Button = findViewById(R.id.start_button)
+        startButton.visibility = View.VISIBLE
+    }
+
+    //ask user to answer how many animal and provide the score they got
+    private fun openQuestionandResult() {
         //initialize a new layout inflater instance for result
         val questionPage: LayoutInflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view = questionPage.inflate(R.layout.game2question, null)
@@ -81,23 +118,57 @@ class Game2Activity : AppCompatActivity() {
             view,
             LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT
         )
+        popupWindow.isFocusable = true
+        popupWindow.update()
         //get user input number from the edit text field
-        //TODO...
+        val userInput = view.findViewById<EditText>(R.id.answer_enterField)
         //button for calculating the score
         val okButton = view.findViewById<Button>(R.id.confirm_gameBResult)
         okButton.setOnClickListener(){
-            //calculate the final score
-            //TODO...
-            popupWindow.dismiss()
+            //check if user didn't enter an answer
+            if(userInput.text.toString().trim().isEmpty()){
+                Toast.makeText(this@Game2Activity, "Enter your answer!", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                //get input
+                val userAnswer = userInput.text.toString().toFloat()
+                //calculate final score
+                if(animalList.size != 0) finalScore = userAnswer/animalList.size
+                System.out.println(finalScore)
+                //disable user input
+                userInput.isEnabled = false
+                //hide question text
+                val questionText = view.findViewById<TextView>(R.id.game2question_text)
+                questionText.visibility = View.GONE
+                //show score user got
+                val scoreBoard = view.findViewById<TextView>(R.id.score_board)
+                scoreBoard.text = "Your final score is $finalScore\nCalculate by\nNo.of animals you reported/Actual animals"
+            }
+            //clear up the game after calculate
+            gameReset()
         }
         //button for reset the game from the beginning
-        val restartButton = view.findViewById<Button>(R.id.reset_gameA)
+        val restartButton = view.findViewById<Button>(R.id.restart_gameB)
         restartButton.setOnClickListener(){
             //reset the timer and go back
-            //TODO...
+            gameReset()
             popupWindow.dismiss()
         }
+        //button for go back to homepage
+        val leaveButton = view.findViewById<Button>(R.id.leavegameb_button)
+        leaveButton.setOnClickListener() {
+            val intent = Intent(this, HomePageActivity::class.java)
+            startActivity(intent)
+        }
 
+        // Finally, show the popup window on app
+        TransitionManager.beginDelayedTransition(this.findViewById(R.id.game_zone))
+        popupWindow.showAtLocation(
+            this.findViewById(R.id.game_zone), // Location to display popup window
+            Gravity.CENTER, // Exact position of layout to display popup
+            0, // X offset
+            0 // Y offset
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -109,7 +180,7 @@ class Game2Activity : AppCompatActivity() {
         val startButton: Button = findViewById(R.id.start_button)
         startButton.setOnClickListener {
             //hide the start button
-            startButton.visibility = View.GONE;
+            startButton.visibility = View.GONE
             startTimer()
         }
     }

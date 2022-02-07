@@ -50,7 +50,7 @@ class HomePageActivity : AppCompatActivity() {
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_home_page)
         // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+        // menu should be considered as top level destinations
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_home, R.id.nav_gameA, R.id.nav_gameB
@@ -62,14 +62,16 @@ class HomePageActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        // Inflate the menu and add items to the action bar
         menuInflater.inflate(R.menu.home_page, menu)
+        //item for go back to welcome page
         val down: MenuItem = menu.findItem(R.id.action_settings)
         down.setOnMenuItemClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             false
         }
+        //item for go back to home page
         val home: MenuItem = menu.findItem(R.id.action_backhome)
         home.setOnMenuItemClickListener {
             val intent = Intent(this, HomePageActivity::class.java)

@@ -13,11 +13,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //enter the game selecting scene by click the OK button on the main scene:
-        //1. finds the View with the corresponding ID
+        //finds the View with the corresponding ID
         val entryButton: Button = findViewById(R.id.entryButton)
-        //2. attaches a click listener to the Button
+        //attaches a click listener to the Button
         entryButton.setOnClickListener{
-            //3. request another activity to achieve the task
+            //request another activity to achieve the task
             startService(Intent(this, BackGroundMusic::class.java))
             val intent = Intent(this, HomePageActivity::class.java)
             startActivity(intent)

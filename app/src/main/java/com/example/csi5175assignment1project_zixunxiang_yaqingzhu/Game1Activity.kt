@@ -17,15 +17,15 @@ import java.util.*
 
 class Game1Activity : AppCompatActivity() {
 
-    var questionNo = 1
-    var questionAnswered = 0
+    var questionNo = 1 //the current number of question
+    var questionAnswered = 0 //how many questions user have answered
     var finalscore = 0
 
-    var userAnswerList: MutableList<String> = mutableListOf<String>()
-    var questionList: MutableList<Int> = mutableListOf<Int>()
-    var randomQList: MutableSet<Int> = mutableSetOf<Int>()
-    var choiceList: MutableList<Int> = mutableListOf<Int>()
-    var correctAnswerList: MutableList<String> = mutableListOf<String>()
+    var userAnswerList: MutableList<String> = mutableListOf<String>() //saved all user's answer
+    var questionList: MutableList<Int> = mutableListOf<Int>() //saved the order of questions by id
+    var randomQList: MutableSet<Int> = mutableSetOf<Int>() //saved randomly selected questions id
+    var choiceList: MutableList<Int> = mutableListOf<Int>() //saved all selected choices by id
+    var correctAnswerList: MutableList<String> = mutableListOf<String>() //saved correct answers for questions
 
     //get 5 random select question as a list
     private fun selectQfromset(): MutableSet<Int>{
@@ -35,7 +35,7 @@ class Game1Activity : AppCompatActivity() {
         return qNumber
     }
 
-    //clear up function
+    //clear up game A
     private fun clearParameter(){
         questionNo = 1
         questionAnswered = 0
@@ -195,8 +195,6 @@ class Game1Activity : AppCompatActivity() {
             setQuestionText(1, randomQList.toList())
             popupWindow.dismiss()
         }
-        //button for save the current score
-        val saveButton = view.findViewById<Button>(R.id.save_score)
         //button for go back to homepage
         val leaveButton = view.findViewById<Button>(R.id.leave_button)
         leaveButton.setOnClickListener() {
@@ -219,11 +217,19 @@ class Game1Activity : AppCompatActivity() {
         setContentView(R.layout.activity_game1)
         //setup the first question
         setQuestionNumber()
+        //setup background color
+        //change screen color to random color
+        val myView: View = findViewById(R.id.questionBackground)
+        val rnd = Random()
+        var color = Color.argb(
+            130, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256)
+        )
+        myView.setBackgroundColor(color)
         //select 5 random questions from the question set
         randomQList = selectQfromset()//qNumber.toList()
         setQuestionText(1, randomQList.toList())
 
-        val myView: View = findViewById(R.id.questionBackground);
+        //get next button and radio button
         val nextButton: Button = findViewById(R.id.confirm_button)
         val radioGroup: RadioGroup = findViewById(R.id.radioGroup)
         nextButton.setOnClickListener {
@@ -252,8 +258,7 @@ class Game1Activity : AppCompatActivity() {
                 setQuestionNumber()
                 setQuestionText(questionNo, randomQList.toList())
                 //change screen color to random color
-                val rnd = Random()
-                val color = Color.argb(
+                color = Color.argb(
                     130, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256)
                 )
                 myView.setBackgroundColor(color)

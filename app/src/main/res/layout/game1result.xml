@@ -13,8 +13,11 @@
         android:fillViewport="false"
         app:layout_constraintBottom_toTopOf="@+id/reset_gameA"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/final_score">
+        app:layout_constraintTop_toBottomOf="@+id/final_score"
+        app:layout_constraintVertical_bias="0.3
+">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -46,18 +49,21 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:text="question1" />
+
             <TextView
                 android:id="@+id/question0_choice0"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="choice1" />
+
             <TextView
                 android:id="@+id/question0_choice1"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="choice2" />
+
             <TextView
                 android:id="@+id/question0_choice2"
                 android:layout_width="300dp"
@@ -72,18 +78,21 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:text="question2" />
+
             <TextView
                 android:id="@+id/question1_choice0"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="choice1" />
+
             <TextView
                 android:id="@+id/question1_choice1"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="choice2" />
+
             <TextView
                 android:id="@+id/question1_choice2"
                 android:layout_width="300dp"
@@ -98,18 +107,21 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:text="question3" />
+
             <TextView
                 android:id="@+id/question2_choice0"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="choice1" />
+
             <TextView
                 android:id="@+id/question2_choice1"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="choice2" />
+
             <TextView
                 android:id="@+id/question2_choice2"
                 android:layout_width="300dp"
@@ -124,18 +136,21 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:text="question4" />
+
             <TextView
                 android:id="@+id/question3_choice0"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="choice1" />
+
             <TextView
                 android:id="@+id/question3_choice1"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="choice2" />
+
             <TextView
                 android:id="@+id/question3_choice2"
                 android:layout_width="300dp"
@@ -150,18 +165,21 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:text="question5" />
+
             <TextView
                 android:id="@+id/question4_choice0"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="choice1" />
+
             <TextView
                 android:id="@+id/question4_choice1"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="choice2" />
+
             <TextView
                 android:id="@+id/question4_choice2"
                 android:layout_width="300dp"
@@ -184,7 +202,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.037" />
+        app:layout_constraintVertical_bias="0.06" />
 
     <Button
         android:id="@+id/reset_gameA"
@@ -196,19 +214,7 @@
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.815" />
-
-    <Button
-        android:id="@+id/save_score"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:text="@string/save_score"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reset_gameA"
-        app:layout_constraintVertical_bias="0.049" />
+        app:layout_constraintVertical_bias="0.82" />
 
     <Button
         android:id="@+id/leave_button"
@@ -219,7 +225,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/save_score"
-        app:layout_constraintVertical_bias="0.081" />
+        app:layout_constraintTop_toBottomOf="@+id/reset_gameA"
+        app:layout_constraintVertical_bias="0.08" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

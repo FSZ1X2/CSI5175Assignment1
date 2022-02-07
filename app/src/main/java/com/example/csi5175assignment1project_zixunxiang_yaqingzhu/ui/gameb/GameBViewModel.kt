@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class GameBViewModel : ViewModel() {
-
+    //instruction for what is game B
     private val _text = MutableLiveData<String>().apply {
         value = "In this game, you will see randomly appearing then disappearing animals. Please count how many animals you have seen in the screen."
     }

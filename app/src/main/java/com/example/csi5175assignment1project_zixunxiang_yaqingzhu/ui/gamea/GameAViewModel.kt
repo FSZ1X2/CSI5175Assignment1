@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class GameAViewModel : ViewModel() {
-
+    //instruction for what is game A
     private val _text = MutableLiveData<String>().apply {
         value = "In this game, you will get 5 multiple choice questions. One at a time. Please answer them."
     }

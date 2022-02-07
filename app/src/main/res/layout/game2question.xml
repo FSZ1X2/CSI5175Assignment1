@@ -8,32 +8,37 @@
     android:background="@color/white">
 
     <TextView
-        android:id="@+id/game2question"
+        android:id="@+id/game2question_text"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:text="@string/gameB_questionText"
         android:textAlignment="textStart"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        android:textColor="@color/gray_200"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.35" />
+        app:layout_constraintVertical_bias="0.326" />
 
     <EditText
         android:id="@+id/answer_enterField"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="numberSigned"
+        android:digits="0123456789"
+        android:hint="@string/gameB_questionInput"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textColor="@color/gray_100"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/game2question"
-        app:layout_constraintVertical_bias="0.04" />
+        app:layout_constraintTop_toBottomOf="@+id/game2question_text"
+        app:layout_constraintVertical_bias="0.099"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/confirm_gameBResult"
@@ -45,7 +50,7 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/answer_enterField"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintVertical_bias="0.121" />
 
     <Button
         android:id="@+id/restart_gameB"
@@ -58,6 +63,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confirm_gameBResult"
         app:layout_constraintVertical_bias="0.04" />
+
+    <Button
+        android:id="@+id/leavegameb_button"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="@string/leave_gameB"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/restart_gameB"
+        app:layout_constraintVertical_bias="0.04" />
+
+    <TextView
+        android:id="@+id/score_board"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        android:textColor="@color/gray_200"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.275" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
