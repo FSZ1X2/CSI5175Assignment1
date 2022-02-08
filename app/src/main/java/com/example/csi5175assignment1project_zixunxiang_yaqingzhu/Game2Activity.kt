@@ -129,6 +129,7 @@ class Game2Activity : AppCompatActivity() {
         //Get the text file
         val myfile = File(sdCardDir, "user_scores.txt")
         myfile.appendText(savedScore)
+        Toast.makeText(this, "Score saved!", Toast.LENGTH_SHORT).show()
     }
 
     //ask user to answer how many animal and provide the score they got
