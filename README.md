@@ -1,7 +1,7 @@
 # CSI5175Assignment1
 Course Project
 
-using Andriod Studio with Kotlin
+using Andriod Studio (Android Studio Bumblebee|2021.1.1) with Kotlin (211-1.5.30-release-408-AS7442.40)
 
 app inclueded:
 - welcome page
