@@ -31,6 +31,7 @@ class Game2Activity : AppCompatActivity() {
 
         var format = String.format("%02d:%02d", m, s)
 
+        //update text for timer for users
         val textView: TextView = findViewById(R.id.timer)
         textView.text = format
     }
@@ -188,6 +189,7 @@ class Game2Activity : AppCompatActivity() {
         restartButton.setOnClickListener(){
             //reset the timer and go back
             gameReset()
+            //close pop up window
             popupWindow.dismiss()
         }
         //button for go back to homepage

@@ -46,6 +46,7 @@ class HomePageActivity : AppCompatActivity() {
                     }
                 }.show()
         }
+        //get elements
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_home_page)
@@ -56,6 +57,7 @@ class HomePageActivity : AppCompatActivity() {
                 R.id.nav_home, R.id.nav_gameA, R.id.nav_gameB
             ), drawerLayout
         )
+        //Android's  navigation activity template:
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 

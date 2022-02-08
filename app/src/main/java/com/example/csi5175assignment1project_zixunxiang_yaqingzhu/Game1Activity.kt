@@ -51,15 +51,19 @@ class Game1Activity : AppCompatActivity() {
         //save questions and answers to lists
         if(file_quesiton.length().toInt()!=0){
             file_quesiton.forEachLine {
+                //load all questions save on sdcard for game A
                 allQuestionsList.add(it)
             }
         }
         if(file_answer.length().toInt()!=0){
             file_answer.forEachLine {
+                //load all answers save on sdcard for game A
                 allAnswersList.add(it)
             }
         }
-        //save total number of questions
+        //the size and item order for two file should be the same
+        //AKA: the correct answer for allQuestionsList[0] should be allAnswersList[0]
+        //save total number of questions (also the number of answers)
         totalSize = allQuestionsList.size
     }
 
@@ -69,20 +73,20 @@ class Game1Activity : AppCompatActivity() {
             val qNumber = (0 until totalSize).random()
             //make sure no duplicate questions
             if(!randomQuestionList.any{ it == allQuestionsList[qNumber] }){
+                //add randomly selected question with its correct answer into Lists
                 randomQuestionList.add(allQuestionsList[qNumber])
                 correctAnswerList.add(allAnswersList[qNumber])
             }
         }
-        System.out.println(randomQuestionList)
-        System.out.println(correctAnswerList)
     }
 
     //clear up game A
     private fun clearParameter(){
+        //reset all var
         questionNo = 1
         questionAnswered = 0
         finalscore = 0
-
+        //reset game related List
         userAnswerList.clear()
         randomQuestionList.clear()
         choiceList.clear()
@@ -93,6 +97,7 @@ class Game1Activity : AppCompatActivity() {
     private fun setQuestionNumber() {
         val questionView: TextView = findViewById(R.id.question_number)
         var format = String.format("%d", questionNo)
+        //set the current question number user at
         questionView.text = "$format/5"
     }
 
@@ -129,8 +134,11 @@ class Game1Activity : AppCompatActivity() {
 
     //add font to text
     private fun fontEditor(qNo:Int, item:TextView){
+        //check if choice have been selected by user
         if(item.text == userAnswerList[qNo]) item.typeface = Typeface.DEFAULT_BOLD;
+        //check if choice is correct or not
         if(item.text == correctAnswerList[qNo]) item.setTextColor(ContextCompat.getColor(this,R.color.green))
+        //check if user selected choice is wrong
         if(item.text == userAnswerList[qNo] && item.text != correctAnswerList[qNo])
             item.setTextColor(ContextCompat.getColor(this,R.color.red))
     }
@@ -155,17 +163,17 @@ class Game1Activity : AppCompatActivity() {
 
     //result window
     private fun showResult() {
-        System.out.println("in")
         //initialize a new layout inflater instance for result
         val resultPage: LayoutInflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view = resultPage.inflate(R.layout.game1result,null)
         //initialize a popup window instance
-        val popupWindow = PopupWindow( view,
+        val popupWindow = PopupWindow(
+            view,
             LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)
         //show scores
         val scoreBoard = view.findViewById<TextView>(R.id.final_score)
         scoreBoard.text = "Your Score: \n$finalscore"
-        //show questions and choices
+        //show questions with its choices
         val questionField1 = view.findViewById<TextView>(R.id.question_text0)
         questionField1.text = "Q1. " + randomQuestionList[0]
         val question1choice1 = view.findViewById<TextView>(R.id.question0_choice0)
@@ -253,6 +261,7 @@ class Game1Activity : AppCompatActivity() {
             setQuestionNumber()
             selectQfromset()
             setQuestionText(0)
+            //close pop up window
             popupWindow.dismiss()
         }
         //button for go back to homepage
@@ -289,6 +298,7 @@ class Game1Activity : AppCompatActivity() {
         myView.setBackgroundColor(color)
         //select 5 random questions from the question set
         selectQfromset()
+        //set up first question
         setQuestionText(0)
 
         //get next button and radio button
@@ -306,6 +316,7 @@ class Game1Activity : AppCompatActivity() {
             else {
                 //save user's answer
                 questionAnswered += 1
+                //get element from view
                 val radioButtonID = radioGroup.checkedRadioButtonId
                 val selectedButton: RadioButton = findViewById(radioButtonID);
                 userAnswerList.add(selectedButton.text as String)

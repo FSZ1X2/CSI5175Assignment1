@@ -26,13 +26,13 @@
     <string name="save_gameA">SAVE SCORE</string>
     <string name="restart_gameA">RESTART</string>
     <string name="leave_gameA">LEAVE</string>
+    <string name="gameA_checkQ">Questions for game A</string>
     <string name="gameA_answersheet">RESULT</string>
     <string name="gameA_answersheetinstruction">The correct answers will be green.
         \nYour answers will in bold font.\nIf your answer is wrong, it will also be red</string>
 
     <string name="menu_gameB">GameB</string>
     <string name="enter_gameB">Start Game B</string>
-    <string name="menu_gameB_edit">Game B Image Edit</string>
     <string name="gameB_editPreview">Upload</string>
     <string name="gameB_editConfirm">Confirm</string>
     <string name="save_gameB">SAVE SCORE</string>

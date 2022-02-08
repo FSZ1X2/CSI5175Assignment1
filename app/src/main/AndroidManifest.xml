@@ -14,10 +14,6 @@
             android:exported="false"
             android:label="@string/user_score_page"/>
         <activity
-            android:name=".GameBImgEditing"
-            android:exported="false"
-            android:label="@string/menu_gameB_edit"/>
-        <activity
             android:name=".GameAQuestionEditing"
             android:exported="false"
             android:label="@string/menu_gameA_edit"/>

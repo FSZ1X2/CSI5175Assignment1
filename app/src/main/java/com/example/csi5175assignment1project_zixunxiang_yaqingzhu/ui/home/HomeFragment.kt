@@ -32,11 +32,11 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        //set up home page text
         val textView: TextView = binding.textHome
         homeViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
-
         //start game A directly
         val start1button: Button = binding.goGameA
         start1button.setOnClickListener {
