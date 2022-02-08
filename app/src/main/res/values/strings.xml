@@ -52,5 +52,6 @@
     <string name="none_score">No score records</string>
 
     <string name="developer_email">zxian010@uottawa.ca</string>
+    <string name="get_reference">GitHub</string>
 
 </resources>

@@ -1,6 +1,7 @@
 package com.example.csi5175assignment1project_zixunxiang_yaqingzhu.ui.home
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -54,6 +55,12 @@ class HomeFragment : Fragment() {
             val intent = Intent(activity, GameAQuestionEditing::class.java)
             startActivity(intent)
         }
+        //check saved scores
+        val checkScorebutton: Button = binding.checkScore
+        checkScorebutton.setOnClickListener {
+            val intent = Intent(activity, UserScorePage::class.java)
+            startActivity(intent)
+        }
         //report issues to developers
         val reportQbutton: Button = binding.reportButton
         reportQbutton.setOnClickListener {
@@ -65,10 +72,10 @@ class HomeFragment : Fragment() {
             intent.putExtra(Intent.EXTRA_TEXT, "Please write down any issue you meet here...")
             startActivity(Intent.createChooser(intent, ""))
         }
-        //check saved scores
-        val checkScorebutton: Button = binding.checkScore
-        checkScorebutton.setOnClickListener {
-            val intent = Intent(activity, UserScorePage::class.java)
+        //check github resource and reference
+        val githubbutton: Button = binding.checkRefernece
+        githubbutton.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/FSZ1X2/CSI5175Assignment1"))
             startActivity(intent)
         }
 
