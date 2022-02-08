@@ -1,9 +1,9 @@
 # CSI5175Assignment1
 Course Project
 
-using Andriod Studio (Android Studio Bumblebee|2021.1.1) with Kotlin (211-1.5.30-release-408-AS7442.40)
+Using Andriod Studio (Android Studio Bumblebee|2021.1.1) with Kotlin (211-1.5.30-release-408-AS7442.40)
 
-app inclueded:
+App inclueded:
 - welcome page
 - home page
 - game A: a quick Q&A game with 5 questions and 3 choice for each
