@@ -150,6 +150,7 @@ class Game1Activity : AppCompatActivity() {
         //Get the text file
         val myfile = File(sdCardDir, "user_scores.txt")
         myfile.appendText(savedScore)
+        Toast.makeText(this, "Score saved!", Toast.LENGTH_SHORT).show()
     }
 
     //result window
